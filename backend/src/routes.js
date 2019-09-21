@@ -1,6 +1,7 @@
 const express = require('express');
 const DevController = require('./controllers/DevController');
 
+
 const routes = express.Router();
 
 
@@ -13,6 +14,7 @@ const routes = express.Router();
 //     return res.json(req.body);
 // });
 
-routes.post('/devs',DevController);
+routes.post('/devs',DevController.store);
+
 
 module.exports = routes;

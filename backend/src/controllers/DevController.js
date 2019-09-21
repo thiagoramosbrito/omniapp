@@ -1,7 +1,30 @@
+const Dev = require('../models/Dev');
+
+// -- Axios -- bom para requisições API externas -- yarn add axios
+const axios = require('axios');
+
 module.exports = {
-    store(req,res) {
+    async store(req,res) {
         console.log(req.body.username);
+        const { username } = req.body;
+
+        const userExists = await Dev.findOne({ user: username });
+
+        if(userExists){
+            return res.json(userExists);
+        }
+
+        const response = await axios.get(`https://api.github.com/users/${username}`);
         
-        return res.json({ ok: true });
+        const { name, bio, avatar_url: avatar } = response.data;
+
+        const dev = await Dev.create({
+            name,
+            user: username,
+            bio,
+            avatar
+        })
+        
+        return res.json(dev);
     }
 }

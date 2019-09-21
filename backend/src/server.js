@@ -5,6 +5,7 @@ const routes = require('./routes');
 const server = express();
 
 mongoose.connect('mongodb+srv://omniapp:omniapp@omniapp-rugdx.mongodb.net/omniappDb?retryWrites=true&w=majority',{
+    useUnifiedTopology: true,
     useNewUrlParser:true
 });
 server.use(express.json());
