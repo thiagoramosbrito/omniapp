@@ -1,13 +1,11 @@
 import React from 'react';
 
-import Login from './pages/Login';
+import Routes from './routes';
 import './App.css';
 
 
-function App() {
+export default function App() {
   return (
-    <Login />
+    <Routes />
   );
 }
-
-export default App;
