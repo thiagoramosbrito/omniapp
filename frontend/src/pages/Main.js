@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 
 import api from '../services/api';
 
+import Header from '../components/Header';
+
 import logo from '../assets/favicon.ico';
 import like from '../assets/like.svg';
 import dislike from '../assets/dislike.svg';
@@ -19,6 +21,7 @@ export default function Main({match}){
             })
 
             setUsers(response.data);
+            
         }
 
         loadUsers();
@@ -45,9 +48,11 @@ export default function Main({match}){
     }
 
     return (
-        <div className="mainContainer">
+        <div className="mainContainer container-fluid">
+            <Header/>
             <img src={logo} alt="Logo" />
-            {users.lenght > 0 ? (
+            {console.log(users.length)}
+            { users.lenght > 0 ? (
                 <ul>
                     {users.map(user => (
                         <li key={user._id}>
